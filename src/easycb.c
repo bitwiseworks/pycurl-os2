@@ -112,6 +112,7 @@ convert_protocol_address(struct sockaddr* saddr, unsigned int saddrlen)
             PyMem_Free(addr_str);
        }
         break;
+#ifndef __OS2__
     case AF_INET6:
         {
             struct sockaddr_in6* sin6 = (struct sockaddr_in6*)saddr;
@@ -132,6 +133,7 @@ convert_protocol_address(struct sockaddr* saddr, unsigned int saddrlen)
             PyMem_Free(addr_str);
         }
         break;
+#endif
 #if !defined(WIN32)
     case AF_UNIX:
         {
