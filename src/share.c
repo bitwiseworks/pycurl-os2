@@ -119,7 +119,7 @@ PYCURL_INTERNAL void
 do_share_dealloc(CurlShareObject *self)
 {
     PyObject_GC_UnTrack(self);
-#if PY_VERSION_HEX < 0x03130000
+#if PY_VERSION_HEX < 0x030d0000
     Py_TRASHCAN_SAFE_BEGIN(self);
 #else
     CPy_TRASHCAN_SAFE_BEGIN(self, do_share_dealloc);
@@ -137,7 +137,7 @@ do_share_dealloc(CurlShareObject *self)
     }
      
     CurlShare_Type.tp_free(self);
-#if PY_VERSION_HEX < 0x03130000
+#if PY_VERSION_HEX < 0x030d0000
     Py_TRASHCAN_SAFE_END(self);
 #else
     CPy_TRASHCAN_SAFE_END(self);
