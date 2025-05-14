@@ -117,11 +117,7 @@ PYCURL_INTERNAL void
 do_multi_dealloc(CurlMultiObject *self)
 {
     PyObject_GC_UnTrack(self);
-#if PY_VERSION_HEX < 0x030d0000
-    Py_TRASHCAN_SAFE_BEGIN(self);
-#else
     CPy_TRASHCAN_BEGIN(self, do_multi_dealloc);
-#endif
 
     util_multi_xdecref(self);
     util_multi_close(self);
@@ -131,11 +127,7 @@ do_multi_dealloc(CurlMultiObject *self)
     }
 
     CurlMulti_Type.tp_free(self);
-#if PY_VERSION_HEX < 0x030d0000
-    Py_TRASHCAN_SAFE_END(self);
-#else
     CPy_TRASHCAN_END(self);
-#endif
 }
 
 
